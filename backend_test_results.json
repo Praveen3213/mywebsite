@@ -1,0 +1,254 @@
+{
+  "total_tests": 34,
+  "passed": 34,
+  "failed": 0,
+  "success_rate": 100.0,
+  "results": [
+    {
+      "test": "API Health Check",
+      "success": true,
+      "message": "API is running successfully",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.123308"
+    },
+    {
+      "test": "Valid Contact Form Submission",
+      "success": true,
+      "message": "Contact submitted successfully with ID: 5ded726b-764b-4b45-a71d-5faf52df2dce",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.161749"
+    },
+    {
+      "test": "Validation Test - Empty data",
+      "success": true,
+      "message": "Correctly rejected invalid data (HTTP 422)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.184262"
+    },
+    {
+      "test": "Validation Test - Missing name",
+      "success": true,
+      "message": "Correctly rejected invalid data (HTTP 422)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.203527"
+    },
+    {
+      "test": "Validation Test - Missing email",
+      "success": true,
+      "message": "Correctly rejected invalid data (HTTP 422)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.224335"
+    },
+    {
+      "test": "Validation Test - Missing subject",
+      "success": true,
+      "message": "Correctly rejected invalid data (HTTP 422)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.243975"
+    },
+    {
+      "test": "Validation Test - Missing message",
+      "success": true,
+      "message": "Correctly rejected invalid data (HTTP 422)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.301316"
+    },
+    {
+      "test": "Validation Test - Name too short",
+      "success": true,
+      "message": "Correctly rejected invalid data (HTTP 422)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.319170"
+    },
+    {
+      "test": "Validation Test - Invalid email format",
+      "success": true,
+      "message": "Correctly rejected invalid data (HTTP 422)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.337885"
+    },
+    {
+      "test": "Validation Test - Subject too short",
+      "success": true,
+      "message": "Correctly rejected invalid data (HTTP 422)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.353270"
+    },
+    {
+      "test": "Validation Test - Message too short",
+      "success": true,
+      "message": "Correctly rejected invalid data (HTTP 422)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.368336"
+    },
+    {
+      "test": "Email Validation - plainaddress",
+      "success": true,
+      "message": "Correctly rejected invalid email (HTTP 400)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.390305"
+    },
+    {
+      "test": "Email Validation - @missingdomain.com",
+      "success": true,
+      "message": "Correctly rejected invalid email (HTTP 400)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.407942"
+    },
+    {
+      "test": "Email Validation - missing@.com",
+      "success": true,
+      "message": "Correctly rejected invalid email (HTTP 400)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.426715"
+    },
+    {
+      "test": "Email Validation - missing@domain",
+      "success": true,
+      "message": "Correctly rejected invalid email (HTTP 400)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.442402"
+    },
+    {
+      "test": "Email Validation - spaces @domain.com",
+      "success": true,
+      "message": "Correctly rejected invalid email (HTTP 400)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.498529"
+    },
+    {
+      "test": "Email Validation - toolongxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@domain.com",
+      "success": true,
+      "message": "Correctly rejected invalid email (HTTP 422)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.519594"
+    },
+    {
+      "test": "Sanitization Test",
+      "success": true,
+      "message": "Malicious input handled successfully",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.536677"
+    },
+    {
+      "test": "Sanitization Test",
+      "success": true,
+      "message": "Malicious input handled successfully",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.556766"
+    },
+    {
+      "test": "Sanitization Test",
+      "success": true,
+      "message": "Malicious input handled successfully",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.579848"
+    },
+    {
+      "test": "Sanitization Test",
+      "success": true,
+      "message": "Malicious input handled successfully",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.600705"
+    },
+    {
+      "test": "Sanitization Test",
+      "success": true,
+      "message": "Malicious input handled successfully",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.618861"
+    },
+    {
+      "test": "Get All Contacts",
+      "success": true,
+      "message": "Retrieved 6 contacts successfully",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.636490"
+    },
+    {
+      "test": "Contact Sorting",
+      "success": true,
+      "message": "Contacts properly sorted by timestamp (newest first)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.636530"
+    },
+    {
+      "test": "Get Contact by ID",
+      "success": true,
+      "message": "Retrieved contact 5ded726b-764b-4b45-a71d-5faf52df2dce successfully",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.654984"
+    },
+    {
+      "test": "Update Status to read",
+      "success": true,
+      "message": "Successfully updated contact status to read",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.672690"
+    },
+    {
+      "test": "Update Status to replied",
+      "success": true,
+      "message": "Successfully updated contact status to replied",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.688051"
+    },
+    {
+      "test": "Invalid Status - invalid",
+      "success": true,
+      "message": "Correctly rejected invalid status 'invalid' (HTTP 400)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.741151"
+    },
+    {
+      "test": "Invalid Status - pending",
+      "success": true,
+      "message": "Correctly rejected invalid status 'pending' (HTTP 400)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.756088"
+    },
+    {
+      "test": "Invalid Status - closed",
+      "success": true,
+      "message": "Correctly rejected invalid status 'closed' (HTTP 400)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.775777"
+    },
+    {
+      "test": "Invalid Status - ",
+      "success": true,
+      "message": "Correctly rejected invalid status '' (HTTP 400)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.800432"
+    },
+    {
+      "test": "Get Contact Invalid ID",
+      "success": true,
+      "message": "Correctly returned 404 for invalid contact ID",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.819247"
+    },
+    {
+      "test": "Update Status Nonexistent Contact",
+      "success": true,
+      "message": "Correctly returned 404 for non-existent contact",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.834705"
+    },
+    {
+      "test": "Long Input Handling",
+      "success": true,
+      "message": "Correctly rejected extremely long input (HTTP 422)",
+      "details": null,
+      "timestamp": "2025-07-27T18:40:55.850865"
+    }
+  ],
+  "created_contacts": [
+    "5ded726b-764b-4b45-a71d-5faf52df2dce",
+    "e28af11f-b2b6-4399-9e01-ef2af2eee970",
+    "837bc63d-fc79-4ede-bc80-6babca961dc2",
+    "d51efc01-c174-4ec6-aad7-abfa1cf4bdef",
+    "fac7a06c-448c-43c9-b18a-77c401ee1073",
+    "e5572cfd-3176-4fa1-8aae-a7098c735e8f"
+  ]
+}
