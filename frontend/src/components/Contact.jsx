@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Linkedin, MapPin, Send, Phone, Calendar } from 'lucide-react';
+import { Mail, Linkedin, MapPin, Send, Phone, Calendar, CheckCircle, AlertCircle } from 'lucide-react';
 import { contactInfo } from '../mock';
 
 const Contact = () => {
@@ -9,20 +9,51 @@ const Contact = () => {
     subject: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
+
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+    // Clear status when user starts typing again
+    if (submitStatus) {
+      setSubmitStatus(null);
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock form submission - in real implementation, this would send data to backend
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! I\'ll get back to you soon.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+        console.error('Form submission error:', data);
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -146,6 +177,25 @@ const Contact = () => {
                   Send me a message
                 </h3>
                 
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="mb-6 p-4 bg-green-900/30 border border-green-600 rounded-lg flex items-center">
+                    <CheckCircle size={20} className="text-green-400 mr-3" />
+                    <p className="text-green-400">
+                      Thank you for your message! I'll get back to you soon.
+                    </p>
+                  </div>
+                )}
+                
+                {submitStatus === 'error' && (
+                  <div className="mb-6 p-4 bg-red-900/30 border border-red-600 rounded-lg flex items-center">
+                    <AlertCircle size={20} className="text-red-400 mr-3" />
+                    <p className="text-red-400">
+                      Sorry, there was an error sending your message. Please try again or use the email link above.
+                    </p>
+                  </div>
+                )}
+                
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
@@ -159,7 +209,8 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-[#1a1c1b] text-[#d9fb06] border border-[#3f4816] rounded-lg focus:border-[#d9fb06] focus:outline-none transition-colors"
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 bg-[#1a1c1b] text-[#d9fb06] border border-[#3f4816] rounded-lg focus:border-[#d9fb06] focus:outline-none transition-colors disabled:opacity-50"
                         placeholder="Your full name"
                       />
                     </div>
@@ -175,7 +226,8 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-[#1a1c1b] text-[#d9fb06] border border-[#3f4816] rounded-lg focus:border-[#d9fb06] focus:outline-none transition-colors"
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 bg-[#1a1c1b] text-[#d9fb06] border border-[#3f4816] rounded-lg focus:border-[#d9fb06] focus:outline-none transition-colors disabled:opacity-50"
                         placeholder="your.email@example.com"
                       />
                     </div>
@@ -192,7 +244,8 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-[#1a1c1b] text-[#d9fb06] border border-[#3f4816] rounded-lg focus:border-[#d9fb06] focus:outline-none transition-colors"
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 bg-[#1a1c1b] text-[#d9fb06] border border-[#3f4816] rounded-lg focus:border-[#d9fb06] focus:outline-none transition-colors disabled:opacity-50"
                       placeholder="What's this about?"
                     />
                   </div>
@@ -207,18 +260,29 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
+                      disabled={isSubmitting}
                       rows={6}
-                      className="w-full px-4 py-3 bg-[#1a1c1b] text-[#d9fb06] border border-[#3f4816] rounded-lg focus:border-[#d9fb06] focus:outline-none transition-colors resize-vertical"
+                      className="w-full px-4 py-3 bg-[#1a1c1b] text-[#d9fb06] border border-[#3f4816] rounded-lg focus:border-[#d9fb06] focus:outline-none transition-colors resize-vertical disabled:opacity-50"
                       placeholder="Tell me about your project or how I can help..."
                     ></textarea>
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full bg-[#d9fb06] text-[#1a1c1b] px-8 py-4 font-bold text-lg uppercase tracking-wide rounded-full hover:opacity-90 hover:scale-105 transition-all duration-300 flex items-center justify-center"
+                    disabled={isSubmitting}
+                    className="w-full bg-[#d9fb06] text-[#1a1c1b] px-8 py-4 font-bold text-lg uppercase tracking-wide rounded-full hover:opacity-90 hover:scale-105 transition-all duration-300 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
-                    <Send size={20} className="mr-2" />
-                    Send Message
+                    {isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-2 border-[#1a1c1b] border-t-transparent mr-2"></div>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send size={20} className="mr-2" />
+                        Send Message
+                      </>
+                    )}
                   </button>
                 </form>
               </div>
